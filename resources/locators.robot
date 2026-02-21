@@ -23,7 +23,7 @@ ${UPDATE_PROFILE_BUTTON}  xpath=//button[@data-localization-key="userProfile.sta
 ${FIRST_NAME_INPUT}             id=firstName-field
 ${LAST_NAME_INPUT}              id=lastName-field
 ${UPLOAD_PROFILE_IMAGE_BUTTON}    xpath=//button[@data-localization-key="userProfile.profilePage.imageFormSubtitle"]
-${PROFILE_IMAGE}          xpath=//div[@role='dialog']//img[contains(@alt,"test morent")]
+${PROFILE_IMAGE}          xpath=//img[contains(@class,'cl-avatarImage')]
 ${ERROR_FIRST_NAME}       id=error-firstName
 ${ERROR_LAST_NAME}        id=error-lastName
 ${UPDATE_PROFILE_SAVE_BUTTON}    xpath=//button[@data-localization-key="userProfile.formButtonPrimary__save"]
