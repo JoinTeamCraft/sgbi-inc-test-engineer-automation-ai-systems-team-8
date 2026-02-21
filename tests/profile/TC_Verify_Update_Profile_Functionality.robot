@@ -2,6 +2,7 @@
 Resource          ../../resources/keywords.robot
 Resource          ../../resources/locators.robot
 Test Teardown    Close All Browsers
+
 *** Variables ***
 ${FIRST_NAME}     Morent
 ${LAST_NAME}      TeamCraft
@@ -14,6 +15,7 @@ TC_Verify_User_Profile_Updation_name
     [Documentation]    Verify Update profile modal and update User names
 
     Launch Application
+    #Manually perform the login here until login steps are implemented in the framework
     Navigate To Profile Page
     Validate Update Profile
     Update Profile Names    ${FIRST_NAME}    ${LAST_NAME}
