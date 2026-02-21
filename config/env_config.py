@@ -6,6 +6,8 @@ class EnvConfig:
     """
     
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
+    BASE_URL = "https://morent-car.archisacademy.com/"
+    BROWSER = "chrome"
 
     def get_config_value(self):
         """Placeholder for config retrieval."""
