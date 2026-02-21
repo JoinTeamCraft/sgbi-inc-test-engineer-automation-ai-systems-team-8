@@ -2,7 +2,6 @@
 Documentation     Template for reusable keywords
 Library           SeleniumLibrary
 Resource          locators.robot
-Resource          ../resources/locators.robot
 
 *** Variables ***
 ${BASE_URL}           https://morent-car.archisacademy.com/
@@ -20,7 +19,7 @@ Example Keyword
     No Operation
 
 Launch Application
-    [Documentation]    Launches browser and opens base URL
+    [Documentation]    Launches browser and opens base URL - morent, Also Long timeout to ensure manual login can be performed until login steps are implemented in the framework
     Open Browser    ${BASE_URL}
     Maximize Browser Window
     Wait Until Keyword Succeeds    ${LONG_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Validate Element Visible    ${ACCOUNT_BUTTON}
@@ -31,20 +30,21 @@ Launch Application
 #====================================
 
 Navigate To Profile Page
-    [Documentation]    Navigates to profile page from Home Page
+    [Documentation]    Navigates to profile page from Home Page by clicking on Account button in the header and then clicking on Manage account button from the user menu, Also validates profile image is visible in profile page to ensure profile page is loaded successfully
     Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Click Element    ${ACCOUNT_BUTTON}
     Click Element    ${MANAGE_ACCOUNT_BUTTON}
     Wait Until Element Is Visible    ${UPDATE_PROFILE_BUTTON}
     Click Element    ${UPDATE_PROFILE_BUTTON}
+    Validate Element Visible    ${PROFILE_IMAGE}
 
 Validate Element Visible
     [Arguments]    ${LOCATOR}
-    [Documentation]    Waits for element and validates visibility
+    [Documentation]    Waits for element and validates visibility of the element located by the provided locator
     Wait Until Element Is Visible    ${LOCATOR}    ${SHORT_TIMEOUT}
     Element Should Be Visible    ${LOCATOR}
 
 Validate Update Profile
-    [Documentation]    Validates Profile page
+    [Documentation]    Validates Profile page elements are visible
     Validate Element Visible    ${PROFILE_IMAGE}
     Validate Element Visible    ${FIRST_NAME_INPUT}
     Validate Element Visible    ${LAST_NAME_INPUT}
@@ -54,7 +54,7 @@ Validate Update Profile
 
 Update Profile Names
     [Arguments]    ${FIRST_NAME}    ${LAST_NAME}
-    [Documentation]    Update Firstname and Lastname with valid values
+    [Documentation]    Update Firstname and Lastname with valid values also check no error messages are displayed for the input fields and updated name is displayed in profile page after saving the changes
     Wait Until Element Is Visible   ${FIRST_NAME_INPUT}    ${SHORT_TIMEOUT}
     Input Text    ${FIRST_NAME_INPUT}    ${FIRST_NAME}
     Input Text    ${LAST_NAME_INPUT}    ${LAST_NAME}
@@ -63,8 +63,6 @@ Update Profile Names
     Element Should Not Be Visible    ${ERROR_FIRST_NAME}
     Element Should Not Be Visible    ${ERROR_LAST_NAME}
     Wait Until Element Is Visible    ${UPDATE_PROFILE_BUTTON}
-
-
 
 Verify Updated User Name
     [Arguments]    ${FIRST_NAME}    ${LAST_NAME}
