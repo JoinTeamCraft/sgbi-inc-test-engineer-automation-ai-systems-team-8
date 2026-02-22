@@ -19,7 +19,8 @@ Input Text When Element Is Visible
     Input Text    ${LOCATOR}    ${INPUT}
 
 Launch Application
-    [Documentation]    Launches browser and opens base URL - morent, Also Long timeout to ensure manual login can be performed until login steps are implemented in the framework
+    [Documentation]    Launches browser and opens base URL, also validates Sign in button is visible to ensure application is loaded successfully
+    ...    Prerequisite: Base URL should be set in environment variable or variables file
     Open Browser    ${BASE_URL}
     Maximize Browser Window
     Wait Until Element Is Visible    ${SIGNIN_BUTTON}    ${SHORT_TIMEOUT}
@@ -27,7 +28,7 @@ Launch Application
 Login As A Valid User
     [Arguments]    ${USERNAME}    ${PASSWORD}
     [Documentation]    Login with valid credentials to the application
-    ...    Prerequisite: Application is launched
+    ...    Prerequisite: Application is launched and user credentials are set in environment variables or variables file
     Wait Until Element Is Visible    ${SIGNIN_BUTTON}    ${SHORT_TIMEOUT}
      Wait Until Keyword Succeeds    ${LONG_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Click Button    ${SIGNIN_BUTTON}
     Input Text When Element Is Visible    ${LOGIN_EMAIL_INPUT}    ${USERNAME}
