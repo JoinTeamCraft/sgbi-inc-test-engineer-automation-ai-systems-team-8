@@ -16,6 +16,7 @@ TC_Verify_Avatar_User_Profile_Update_name
     ${ORGINAL_FIRST_NAME}    ${ORGINAL_LAST_NAME} =    profile_page.Get Existing Profile Names
     profile_page.Update Profile Names    ${FIRST_NAME}    ${LAST_NAME}
     profile_page.Verify Updated User Name    ${FIRST_NAME}    ${LAST_NAME}
-    Click Element    ${UPDATE_PROFILE_BUTTON}
+    Wait And Click Element   ${UPDATE_PROFILE_BUTTON}
     profile_page.Update Profile Names    ${ORGINAL_FIRST_NAME}    ${ORGINAL_LAST_NAME}
+
 

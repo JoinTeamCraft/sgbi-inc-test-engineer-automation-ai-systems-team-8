@@ -67,6 +67,13 @@ Verify Updated User Name
     Wait Until Element Is Visible    ${USER_PREVIEW_NAME}    ${SHORT_TIMEOUT}
     ${ACTUAL_NAME}=    Get Text    ${USER_PREVIEW_NAME}
     Should Be Equal    ${ACTUAL_NAME}    ${EXPECTED_NAME}
+    Navigate to Home Page
+    Wait Until Keyword Succeeds    ${LONG_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Wait And Click Element    ${ACCOUNT_BUTTON}
+    ${ACTUAL_NAME}=    Get Text    ${USER_PREVIEW_NAME}
+    Should Be Equal    ${ACTUAL_NAME}    ${EXPECTED_NAME}
+    Click Element      ${CLOSE_USER_MENU_BUTTON}
+    Navigate To Profile Page
+    Click Element      ${UPDATE_PROFILE_CANCEL_BUTTON}
 
 Get Existing Profile Names
     [Documentation]    Get existing profile firstname and lastname values from profile page and return the values
