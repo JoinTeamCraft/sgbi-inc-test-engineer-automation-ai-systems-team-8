@@ -1,6 +1,4 @@
 *** Settings ***
-Resource          ../../resources/keywords.robot
-Resource          ../../resources/locators.robot
 Resource          ../../resources/pages/profile_page.robot
 Resource          ../../resources/base/common_utility.robot
 Resource          ../../resources/pages/login_page.robot
@@ -8,7 +6,7 @@ Resource          ../../resources/pages/login_page.robot
 Test Teardown    Close All Browsers
 
 *** Test Cases ***
-TC_Verify_User_Profile_Update_name
+TC_Verify_Avatar_User_Profile_Update_name
     [Documentation]    Verify Update profile modal and update Firstname and Lastname with valid values and verify the updated name in profile page. Also reset the name to original values after verification
 
     common_utility.Launch Application

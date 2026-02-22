@@ -32,3 +32,4 @@ Login As A Valid User
     Wait Until Element Is Visible    ${CONTINUE_BUTTON}
     Click Button    ${CONTINUE_BUTTON}
     Wait Until Keyword Succeeds    ${LONG_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Wait Until Element Is Visible    ${ACCOUNT_BUTTON}
+

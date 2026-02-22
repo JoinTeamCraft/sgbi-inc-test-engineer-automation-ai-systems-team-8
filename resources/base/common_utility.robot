@@ -8,7 +8,7 @@ Resource          ../../resources/variables.robot
 #====================================
 # HOME PAGE
 #====================================
-${SIGNIN_BUTTON}          xpath=//button[@component='SignInButton']
+${PRE_LOGIN_IDENTIFIER}          xpath=//button[@component='SignInButton']
 
 *** Keywords ***
 # Add your common keywords here
@@ -28,4 +28,4 @@ Launch Application
     ...    Prerequisite: Base URL should be set in environment variable or variables file
     Open Browser    ${BASE_URL}
     Maximize Browser Window
-    Wait Until Element Is Visible    ${SIGNIN_BUTTON}    ${SHORT_TIMEOUT}
+    Wait Until Element Is Visible    ${PRE_LOGIN_IDENTIFIER}    ${SHORT_TIMEOUT}
