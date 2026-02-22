@@ -14,6 +14,13 @@ ${DETAILS_PAGE_CAR_PRICE}          xpath=//p[contains(@class,'_product-price')]
 ${DETAILS_PAGE_CAR_INFO_ITEMS}    //div[contains(@class,'_product-card-info-item')]
 
 *** Keywords ***
+Navigate to Car Details Page
+    [Documentation]    Navigates to the car details page by clicking on the "Rent Now" button for the first car in the search results, Also validates that the car details page is loaded successfully by checking the visibility of car name and price elements
+    Wait Until Element Is Visible    ${SEARCH_RESULT_PAGE_CAR_NAMES}    timeout=${MEDIUM_TIMEOUT}
+    Click Rent Now For First Car
+    Wait Until Element Is Visible    ${DETAILS_PAGE_CAR_NAME}    timeout=${MEDIUM_TIMEOUT}
+    Wait Until Element Is Visible    ${DETAILS_PAGE_CAR_PRICE}   timeout=${SHORT_TIMEOUT}
+
 Get Car Details Dynamically
     [Documentation]    Gets car name, price, and all info items dynamically
     Wait Until Page Contains Element    ${DETAILS_PAGE_CAR_NAME}    timeout=${MEDIUM_TIMEOUT}
