@@ -84,13 +84,13 @@ Get Existing Profile Names
     RETURN    ${current_first}    ${current_last}
 
 Image Srcset Should Change
-    [Arguments]    ${locator}    ${old_src}
-    ${current}=    Get Element Attribute    ${locator}    srcset
-    Should Not Be Equal    ${current}    ${old_src}
+    [Arguments]    ${LOCATOR}    ${OLD_SRC}
+    ${current}=    Get Element Attribute    ${LOCATOR}    srcset
+    Should Not Be Equal    ${current}    ${OLD_SRC}
 
 Verify Profile Picture Change in header
-    [Arguments]    ${locator}    ${old_src}
-    Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Image Srcset Should Change    ${locator}    ${old_src}
+    [Arguments]    ${LOCATOR}    ${OLD_SRC}
+    Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Image Srcset Should Change    ${LOCATOR}    ${OLD_SRC}
 
 
 Verify Upload Profile Picture
