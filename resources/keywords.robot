@@ -29,7 +29,7 @@ Login As A Valid User
     [Documentation]    Login with valid credentials to the application
     ...    Prerequisite: Application is launched
     Wait Until Element Is Visible    ${SIGNIN_BUTTON}    ${SHORT_TIMEOUT}
-    Click Button    ${SIGNIN_BUTTON}
+     Wait Until Keyword Succeeds    ${LONG_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Click Button    ${SIGNIN_BUTTON}
     Input Text When Element Is Visible    ${LOGIN_EMAIL_INPUT}    ${USERNAME}
     Wait Until Element Is Visible    ${CONTINUE_BUTTON}
     Click Button    ${CONTINUE_BUTTON}
