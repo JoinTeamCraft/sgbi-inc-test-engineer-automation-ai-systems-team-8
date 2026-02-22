@@ -4,6 +4,9 @@ Documentation     Template for reusable keywords
 *** Variables ***
 
 ${BROWSER}            chrome
+#====================================
+# WAIT variables - These can be used across the test cases for consistency and easy maintenance
+#====================================
 ${SHORT_TIMEOUT}    5s
 ${MEDIUM_TIMEOUT}   10s
 ${LONG_TIMEOUT}     30s

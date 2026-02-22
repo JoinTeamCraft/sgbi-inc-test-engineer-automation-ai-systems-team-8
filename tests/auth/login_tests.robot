@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     Template for Auth tests
 Resource          ../../resources/keywords.robot
-Resource          ../../resources/locators.robot
+Resource          ../../resources/pages.robot
 
 *** Test Cases ***
 Login Test Template

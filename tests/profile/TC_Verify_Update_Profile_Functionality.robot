@@ -1,17 +1,21 @@
 *** Settings ***
 Resource          ../../resources/keywords.robot
 Resource          ../../resources/locators.robot
+Resource          ../../resources/pages/profile_page.robot
+Resource          ../../resources/base/common_utility.robot
+Resource          ../../resources/pages/login_page.robot
+
 Test Teardown    Close All Browsers
 
 *** Test Cases ***
-TC_SG_41_Verify_User_Profile_Updation_name
+TC_Verify_User_Profile_Updation_name
     [Documentation]    Verify Update profile modal and update Firstname and Lastname with valid values and verify the updated name in profile page. Also reset the name to original values after verification
 
-    Launch Application
-    Login As A Valid User    ${USER_EMAIL}    ${USER_PASSWORD}
-    Navigate To Profile Page
-    Validate Update Profile
-    Update Profile Names    ${FIRST_NAME}    ${LAST_NAME}
-    Verify Updated User Name    ${FIRST_NAME}    ${LAST_NAME}
+    common_utility.Launch Application
+    login_page.Login As A Valid User    ${USER_EMAIL}    ${USER_PASSWORD}
+    profile_page.Navigate To Profile Page
+    profile_page.Validate Update Profile
+    profile_page.Update Profile Names    ${FIRST_NAME}    ${LAST_NAME}
+    profile_page.Verify Updated User Name    ${FIRST_NAME}    ${LAST_NAME}
     Click Element    ${UPDATE_PROFILE_BUTTON}
-    Update Profile Names    ${RESET_FIRST_NAME}    ${RESET_LAST_NAME}
+    profile_page.Update Profile Names    ${RESET_FIRST_NAME}    ${RESET_LAST_NAME}
