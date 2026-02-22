@@ -74,4 +74,3 @@ Get Existing Profile Names
     ${current_last}=     Get Value    ${LAST_NAME_INPUT}
     RETURN    ${current_first}    ${current_last}
 
-
