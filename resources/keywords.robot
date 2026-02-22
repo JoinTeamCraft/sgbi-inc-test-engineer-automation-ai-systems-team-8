@@ -80,3 +80,4 @@ Verify Updated User Name
     Wait Until Element Is Visible    ${USER_PREVIEW_NAME}    ${SHORT_TIMEOUT}
     ${ACTUAL_NAME}=    Get Text    ${USER_PREVIEW_NAME}
     Should Be Equal    ${ACTUAL_NAME}    ${EXPECTED_NAME}
+
