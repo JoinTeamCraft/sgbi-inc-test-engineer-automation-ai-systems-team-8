@@ -8,7 +8,7 @@ Resource          ../../resources/base/common_utility.robot
 #====================================
 # HOME PAGE
 #====================================
-${SIGNIN_BUTTON}          xpath=//button[@component='SignInButton']
+${SIGNIN_BUTTON}          ${PRE_LOGIN_IDENTIFIER}
 ${ACCOUNT_BUTTON}         xpath=//button[@aria-label="Open user menu"]
 
 *** Keywords ***
