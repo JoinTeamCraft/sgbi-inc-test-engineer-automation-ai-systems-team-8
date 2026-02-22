@@ -25,7 +25,7 @@ TC_Navigation_To_Car_Details_Page_And_Validate_Car_Info
     Should Be Equal    ${CAR_NAME}    ${Selected_car_name}
 
 TC_Navigate_To_Car_Details_page_And_Verify_Car_Specifications
-    [Documentation]    This test case validates that all the essential elements on the car details page are displayed correctly, including car name, price, features, and booking options
+    [Documentation]    This test case validates that all car specifications are displayed and not empty on the car details page by iterating through the list of car info items and checking if the label and value for each item are present and not empty
     [Tags]    booking
     Launch Application
     Navigate To Search Results Page
