@@ -1,8 +1,14 @@
 *** Settings ***
 Documentation     Template for reusable keywords
 Library           SeleniumLibrary
-Resource          locators.robot
-Resource          variables.robot
+Resource          ../../resources/variables.robot
+
+
+*** Variables ***
+#====================================
+# HOME PAGE
+#====================================
+${SIGNIN_BUTTON}          xpath=//button[@component='SignInButton']
 
 *** Keywords ***
 # Add your common keywords here

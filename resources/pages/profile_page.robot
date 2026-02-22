@@ -2,9 +2,15 @@
 Documentation     Template for common locators
 Library           SeleniumLibrary
 Resource          ../../resources/base/common_utility.robot
-
+Resource          ../../resources/pages/home_page.robot
 
 *** Variables ***
+#====================================
+# USER ACCOUNT POP UP
+#====================================
+${USER_PREVIEW_NAME}      xpath=//div[@role='dialog']//span[contains(@class,'userPreviewMainIdentifierText')]
+${MANAGE_ACCOUNT_BUTTON}  xpath=//div[@role='menu']//button[normalize-space()='Manage account']
+${SIGN_OUT_BUTTON}        xpath=//div[@role='menu']//button[normalize-space()='Sign out']
 #====================================
 # ACCOUNT > PROFILE PAGE
 #====================================
@@ -18,7 +24,6 @@ ${ERROR_FIRST_NAME}       id=error-firstName
 ${ERROR_LAST_NAME}        id=error-lastName
 ${UPDATE_PROFILE_SAVE_BUTTON}    xpath=//button[@data-localization-key="userProfile.formButtonPrimary__save"]
 ${UPDATE_PROFILE_CANCEL_BUTTON}    xpath=//button[@data-localization-key="userProfile.formButtonReset"]
-
 
 *** Keywords ***
 #====================================
