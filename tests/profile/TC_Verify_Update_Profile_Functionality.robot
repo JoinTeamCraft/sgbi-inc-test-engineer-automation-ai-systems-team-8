@@ -3,19 +3,12 @@ Resource          ../../resources/keywords.robot
 Resource          ../../resources/locators.robot
 Test Teardown    Close All Browsers
 
-*** Variables ***
-${FIRST_NAME}     Morent
-${LAST_NAME}      TeamCraft
-${RESET_FIRST_NAME}     test
-${RESET_LAST_NAME}      morent
-
-
 *** Test Cases ***
 TC_Verify_User_Profile_Updation_name
     [Documentation]    Verify Update profile modal and update Firstname and Lastname with valid values and verify the updated name in profile page. Also reset the name to original values after verification
 
     Launch Application
-    #Manually perform the login here until login steps are implemented in the framework
+    Login As A Valid User    ${USER_EMAIL}    ${USER_PASSWORD}
     Navigate To Profile Page
     Validate Update Profile
     Update Profile Names    ${FIRST_NAME}    ${LAST_NAME}
