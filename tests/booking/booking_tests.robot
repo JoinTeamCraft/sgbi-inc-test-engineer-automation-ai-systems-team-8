@@ -25,3 +25,13 @@ TC_Navigation_To_Car_Details_Page_And_Validate_Car_Info
     Click Rent Now For First Car
     ${CAR_NAME}    ${CAR_PRICE}    Get Car Details Dynamically
     Should Be Equal    ${CAR_NAME}    ${Selected_car_name}
+
+TC_Navigate_To_Car_Details_page_And_Verify_Car_Specifications
+    [Documentation]    This test case validates that all the essential elements on the car details page are displayed correctly, including car name, price, features, and booking options
+    [Tags]    booking
+    Launch Application
+    ${PICKUP_DATE}    ${RETURN_DATE} =    common_utility.Get Random Pickup And Return Dates
+    Perform Car Search home page    ${PICKUP_LOCATION}    ${DROPOFF_LOCATION}    ${PICKUP_DATE}    ${RETURN_DATE}
+    Wait Until Element Is Visible    ${SEARCH_RESULT_PAGE_CAR_NAMES}
+    Click Rent Now For First Car
+    Validate Car Specifications
