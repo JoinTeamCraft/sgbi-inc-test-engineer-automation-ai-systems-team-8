@@ -68,4 +68,9 @@ Verify Updated User Name
     ${ACTUAL_NAME}=    Get Text    ${USER_PREVIEW_NAME}
     Should Be Equal    ${ACTUAL_NAME}    ${EXPECTED_NAME}
 
+Get Existing Profile Names
+    [Documentation]    Get existing profile firstname and lastname values from profile page and return the values
+    ${current_first}=    Get Value    ${FIRST_NAME_INPUT}
+    ${current_last}=     Get Value    ${LAST_NAME_INPUT}
+    RETURN    ${current_first}    ${current_last}
 
