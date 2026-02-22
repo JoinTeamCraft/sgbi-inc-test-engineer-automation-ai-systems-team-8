@@ -11,7 +11,7 @@ Test Teardown     Close All Browsers
 
 *** Keywords ***
 Car Detail Test Setup
-    [Documentation]    Common setup for booking tests: launch app, navigate to search results, and click first car
+    [Documentation]    Common setup for booking tests: launch app, navigate to search results
     Launch Application
     Navigate To Search Results Page
 
