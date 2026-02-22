@@ -4,7 +4,7 @@ Resource          ../../resources/locators.robot
 Test Teardown    Close All Browsers
 
 *** Test Cases ***
-TC_Verify_User_Profile_Updation_name
+TC_SG_41_Verify_User_Profile_Updation_name
     [Documentation]    Verify Update profile modal and update Firstname and Lastname with valid values and verify the updated name in profile page. Also reset the name to original values after verification
 
     Launch Application
