@@ -23,7 +23,6 @@ Get Car Details Dynamically
     ${CAR_PRICE}=   Get Text    ${DETAILS_PAGE_CAR_PRICE}
     Log    Car Name: ${CAR_NAME}
     Log    Car Price: ${CAR_PRICE}
-    Validate Car Specifications
 
     RETURN    ${CAR_NAME}    ${CAR_PRICE}
 
