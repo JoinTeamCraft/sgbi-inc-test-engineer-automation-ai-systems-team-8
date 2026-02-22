@@ -1,4 +1,5 @@
 *** Settings ***
+<<<<<<< HEAD
 Documentation     Reusable keywords for OrangeHRM automation tests
 Library           SeleniumLibrary
 Library           ../python_lib/page_objects.py
@@ -96,3 +97,14 @@ Logout From Application
 Cleanup Test Environment
     [Documentation]    Clean up test environment
     Close All Browsers
+=======
+Documentation     Template for reusable keywords
+Library           SeleniumLibrary
+Resource          locators.robot
+
+*** Keywords ***
+# Add your common keywords here
+Example Keyword
+    [Documentation]    Placeholder for a keyword
+    No Operation
+>>>>>>> origin/master

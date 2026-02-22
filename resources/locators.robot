@@ -1,4 +1,5 @@
 *** Settings ***
+<<<<<<< HEAD
 Documentation     Locators for OrangeHRM application elements
 Library           SeleniumLibrary
 
@@ -41,3 +42,11 @@ ${RESET_BUTTON}         xpath=//button[contains(@class, 'oxd-button--ghost')]
 ${ADD_BUTTON}           xpath=//button[contains(text(), 'Add')]
 ${DELETE_BUTTON}        xpath=//button[contains(text(), 'Delete')]
 ${EDIT_BUTTON}          xpath=//button[contains(text(), 'Edit')]
+=======
+Documentation     Template for common locators
+Library           SeleniumLibrary
+
+*** Variables ***
+# Add your application locators here
+# ${EXAMPLE_LOCATOR}    id=example
+>>>>>>> origin/master

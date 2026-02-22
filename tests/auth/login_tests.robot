@@ -1,4 +1,5 @@
 *** Settings ***
+<<<<<<< HEAD
 Documentation     OrangeHRM Login Authentication Tests
 Resource          ../../resources/keywords.robot
 Resource          ../../resources/locators.robot
@@ -37,3 +38,14 @@ Login Page Elements Test
     Element Should Be Visible    ${PASSWORD_FIELD}
     Element Should Be Visible    ${LOGIN_BUTTON}
     Element Should Be Enabled    ${LOGIN_BUTTON}
+=======
+Documentation     Template for Auth tests
+Resource          ../../resources/keywords.robot
+Resource          ../../resources/locators.robot
+
+*** Test Cases ***
+Login Test Template
+    [Documentation]    Placeholder for login test
+    [Tags]    auth
+    Log    Implement login test here
+>>>>>>> origin/master

@@ -1,4 +1,5 @@
 import os
+<<<<<<< HEAD
 from pathlib import Path
 
 class EnvConfig:
@@ -37,3 +38,16 @@ class EnvConfig:
         """Ensure screenshot directory exists."""
         cls.SCREENSHOT_DIR.mkdir(parents=True, exist_ok=True)
         return str(cls.SCREENSHOT_DIR)
+=======
+
+class EnvConfig:
+    """
+    Template for environment configuration.
+    """
+    
+    ROBOT_LIBRARY_SCOPE = 'GLOBAL'
+
+    def get_config_value(self):
+        """Placeholder for config retrieval."""
+        pass
+>>>>>>> origin/master
