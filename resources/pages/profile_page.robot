@@ -1,7 +1,6 @@
 *** Settings ***
 Documentation     Template for common locators
 Library           SeleniumLibrary
-Resource          ../../resources/base/common_utility.robot
 Resource          ../../resources/pages/home_page.robot
 
 *** Variables ***
@@ -24,6 +23,9 @@ ${ERROR_FIRST_NAME}       id=error-firstName
 ${ERROR_LAST_NAME}        id=error-lastName
 ${UPDATE_PROFILE_SAVE_BUTTON}    xpath=//button[@data-localization-key="userProfile.formButtonPrimary__save"]
 ${UPDATE_PROFILE_CANCEL_BUTTON}    xpath=//button[@data-localization-key="userProfile.formButtonReset"]
+${PROFILE_PICTURE_PATH}    ${EXECDIR}/resources/Uploads/Valid_update_profile_picture.jpg
+${PROFILE_PICTURE_UPLOAD_INPUT}    xpath=//input[@type='file' and contains(@accept,'image')]
+${ERROR_UPLOAD_EXCEED_SIZE}    xpath=//p[contains(text(),'File size exceeds the maximum limit')]
 
 *** Keywords ***
 #====================================
@@ -67,7 +69,7 @@ Verify Updated User Name
     Wait Until Element Is Visible    ${USER_PREVIEW_NAME}    ${SHORT_TIMEOUT}
     ${ACTUAL_NAME}=    Get Text    ${USER_PREVIEW_NAME}
     Should Be Equal    ${ACTUAL_NAME}    ${EXPECTED_NAME}
-    Navigate to Home Page
+    common_utility.Navigate to Home Page
     Wait Until Keyword Succeeds    ${LONG_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Wait And Click Element    ${ACCOUNT_BUTTON}
     ${ACTUAL_NAME}=    Get Text    ${USER_PREVIEW_NAME}
     Should Be Equal    ${ACTUAL_NAME}    ${EXPECTED_NAME}
@@ -81,3 +83,25 @@ Get Existing Profile Names
     ${current_last}=     Get Value    ${LAST_NAME_INPUT}
     RETURN    ${current_first}    ${current_last}
 
+Image Srcset Should Change
+    [Arguments]    ${LOCATOR}    ${OLD_SRC}
+    ${current}=    Get Element Attribute    ${LOCATOR}    srcset
+    Should Not Be Equal    ${current}    ${OLD_SRC}
+
+Verify Profile Picture Change in header
+    [Arguments]    ${LOCATOR}    ${OLD_SRC}
+    Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Image Srcset Should Change    ${LOCATOR}    ${OLD_SRC}
+    Capture Screenshot With Name    Profile_Picture_Updated_header
+
+
+Verify Upload Profile Picture
+    [Arguments]    ${IMAGE_PATH}
+    [Documentation]    Remove existing profile picture if already uploaded and then upload new profile picture and validate the profile picture is updated successfully by validating visibility of remove profile image button after uploading the new profile picture
+    ${COUNT}=    Get Element Count    ${REMOVE_PROFILE_IMAGE_BUTTON}
+    IF    ${COUNT} > 0    Wait and Click Element    ${REMOVE_PROFILE_IMAGE_BUTTON}
+    IF    ${COUNT} > 0    Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Click Element    ${UPDATE_PROFILE_BUTTON}
+    Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Choose File    ${PROFILE_PICTURE_UPLOAD_INPUT}    ${IMAGE_PATH}
+    Element Should Not Be Visible    ${ERROR_UPLOAD_EXCEED_SIZE}
+    Capture Screenshot With Name    Profile_Picture_Updated
+    Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Click Element    ${UPDATE_PROFILE_BUTTON}
+    Wait Until Element Is Visible    ${REMOVE_PROFILE_IMAGE_BUTTON}    ${LONG_TIMEOUT}

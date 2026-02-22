@@ -25,12 +25,12 @@ Launch Application
     ...    Prerequisite: Base URL should be set in environment variable or variables file
     Open Browser    ${BASE_URL}
     Maximize Browser Window
-    Wait Until Element Is Visible    ${LAUNCH_IDENTIFIER}    ${SHORT_TIMEOUT}
+    Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Wait Until Element Is Visible    ${LAUNCH_IDENTIFIER}    ${SHORT_TIMEOUT}
 
 Navigate to Home Page
     [Documentation]    Navigates to Home page by clicking on the application logo in the header and validates home page is loaded successfully by validating visibility of Account button in the header
     Go To    ${BASE_URL}
-    Wait Until Element Is Visible    ${LAUNCH_IDENTIFIER}    ${SHORT_TIMEOUT}
+    Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Wait Until Element Is Visible    ${LAUNCH_IDENTIFIER}    ${SHORT_TIMEOUT}
 
 Wait And Click Element
     [Arguments]    ${LOCATOR}
@@ -38,3 +38,8 @@ Wait And Click Element
     Wait Until Element Is Visible    ${LOCATOR}    ${SHORT_TIMEOUT}
     Wait Until Element Is Enabled    ${LOCATOR}    ${SHORT_TIMEOUT}
     Click Element    ${LOCATOR}
+
+Capture Screenshot With Name
+    [Arguments]    ${name}
+    ${timestamp}=    Get Time    epoch
+    Capture Page Screenshot    ${name}_${timestamp}.png
