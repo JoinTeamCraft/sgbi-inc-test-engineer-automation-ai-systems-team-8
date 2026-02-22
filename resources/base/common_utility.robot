@@ -38,3 +38,8 @@ Wait And Click Element
     Wait Until Element Is Visible    ${LOCATOR}    ${SHORT_TIMEOUT}
     Wait Until Element Is Enabled    ${LOCATOR}    ${SHORT_TIMEOUT}
     Click Element    ${LOCATOR}
+
+Capture Screenshot With Name
+    [Arguments]    ${name}
+    ${timestamp}=    Get Time    epoch
+    Capture Page Screenshot    ${name}_${timestamp}.png
