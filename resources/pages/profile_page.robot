@@ -100,5 +100,6 @@ Verify Upload Profile Picture
     IF    ${COUNT} > 0    Wait and Click Element    ${REMOVE_PROFILE_IMAGE_BUTTON}
     IF    ${COUNT} > 0    Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Click Element    ${UPDATE_PROFILE_BUTTON}
     Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Choose File    ${PROFILE_PICTURE_UPLOAD_INPUT}    ${IMAGE_PATH}
+    Element Should Not Be Visible    ${ERROR_UPLOAD_EXCEED_SIZE}
     Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Click Element    ${UPDATE_PROFILE_BUTTON}
     Wait Until Element Is Visible    ${REMOVE_PROFILE_IMAGE_BUTTON}    ${LONG_TIMEOUT}
