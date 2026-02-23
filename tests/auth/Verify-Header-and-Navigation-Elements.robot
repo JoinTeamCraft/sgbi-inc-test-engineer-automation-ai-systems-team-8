@@ -51,10 +51,10 @@ ${REGISTER_BUTTON}         xpath=//button[contains(text(), 'Sign Up') or contain
 ${ACCOUNT_BUTTON}          xpath=//button[@aria-label="Open user menu" or @aria-label="User Settings"]
 
 # Navigation Menu Items
-${NAV_HOME}                xpath=//nav//a[contains(@href, '/') and not(contains(@href, 'about'))]
-${NAV_ABOUT}               xpath=//a[contains(text(), 'About')]
-${NAV_CARS}                xpath=//a[contains(text(), 'Cars') or contains(text(), 'cars')]
-${NAV_CONTACT}             xpath=//a[contains(text(), 'Contact')]
+${NAV_HOME}                xpath=//nav//a[@href='/' or normalize-space()='Home']
+${NAV_ABOUT}               xpath=//nav//a[contains(text(), 'About')]
+${NAV_CARS}                xpath=//nav//a[contains(text(), 'Cars') or contains(text(), 'cars')]
+${NAV_CONTACT}             xpath=//nav//a[contains(text(), 'Contact')]
 
 # Page Elements for Validation
 ${BODY_ELEMENT}            xpath=//body
