@@ -36,3 +36,9 @@ TC_Navigate_To_Car_Details_page_And_Verify_Car_Specifications
     [Documentation]    This test case validates that all the essential elements on the car specifications section of the car details page are displayed and contain valid information by iterating through the list of car info items and checking if the label and value for each item are present and not empty
     [Tags]    booking
     Validate Car Specifications
+
+TC_Navigate_To_Car_Details_Page_and_Verify_Image
+    [Documentation]    This test case validates that the car image is displayed on the car details page and that the image source is not empty, ensuring that the car image is loaded correctly
+    [Tags]    booking
+    Wait Until Page Contains Element    ${DETAILS_PAGE_CAR_NAME}    timeout=${MEDIUM_TIMEOUT}
+    Verify Car Image On Car Details Page
