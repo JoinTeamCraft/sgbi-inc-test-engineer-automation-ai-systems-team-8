@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Robot Framework
+results/
+log.html
+report.html
+output.xml
+selenium-screenshot-*.png
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Browser binaries (Playwright/Selenium)
+.playwright/
+node_modules/
+playwright-report/
+test-results/
+browsers/
+chromedriver*
+geckodriver*
+msedgedriver*
+operadriver*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+*.log
+
+# Large output folders
+screenshots/
+videos/
+traces/
+allure-results/
+allure-report/
+
+# PR Description (as per requirements)
+PR_DESCRIPTION.md
