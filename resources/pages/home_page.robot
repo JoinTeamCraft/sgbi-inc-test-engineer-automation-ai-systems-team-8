@@ -43,19 +43,18 @@ Perform Car Search home page
 
 Get Car Card Details Before Click
     [Documentation]    Gets the car name from the first car card on the home page before clicking the "Rent Now" button, this is used to validate that the correct car details are displayed on the car details page after clicking "Rent Now"
-    Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Click element    ${HOME_CAR_CARD_NAME}
+    Wait Until Keyword Succeeds    ${SHORT_TIMEOUT}    ${WAIT_RETRY_INTERVAL}    Get Text    ${HOME_CAR_CARD_NAME}
     ${car_name}=    Get Text    ${HOME_CAR_CARD_NAME}
     RETURN    ${car_name}
 
 Click Rent Now Button On Car Card
-    [Documentation]    Clicks the "Rent Now" button on the car card on the home page to navigate to the car details page, also validates that the user is navigated to the car details page by validating visibility of car name element on the details page
+    [Documentation]    Clicks the "Rent Now" button on the car card on the home page to navigate to the car details page, also validates that the user is navigated to the car details page
     Wait Until Element Is Visible    ${HOME_RENT_NOW_BTN}   timeout=${SHORT_TIMEOUT}
     Click Element    ${HOME_RENT_NOW_BTN}
 
 Verify Car Details Page Loaded
     [Documentation]    Validates that the car details page is loaded successfully by checking the visibility of car name element on the details page
     Wait Until Page Contains Element    ${DETAILS_PAGE_CAR_NAME}    timeout=${MEDIUM_TIMEOUT}
-    Page Should Contain Element    ${DETAILS_PAGE_CAR_NAME}
 
 Verify Car Information Matches Selected Card
     [Arguments]    ${expected_car_name}
