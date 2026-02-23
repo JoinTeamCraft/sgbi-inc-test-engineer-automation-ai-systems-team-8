@@ -11,7 +11,8 @@ Resource          ../../resources/base/common_utility.robot
 ${DETAILS_PAGE_CAR_NAME}          xpath=//h1[contains(@class,'_product-details-card-header-title')]
 ${DETAILS_PAGE_CAR_PRICE}          xpath=//p[contains(@class,'_product-price')]
 #Below xpath points to all the car info items like car type, capacity, steering type and gasoline
-${DETAILS_PAGE_CAR_INFO_ITEMS}    //div[contains(@class,'_product-card-info-item')]
+${DETAILS_PAGE_CAR_INFO_ITEMS}
+${CAR_IMAGE}    xpath=//div[contains(@class,'_product-image-viewer-main-image')]//img[@alt='main-image']
 
 *** Keywords ***
 Navigate to Car Details Page
@@ -44,4 +45,15 @@ Validate Car Specifications
     Log    ${label}: ${value}
     Should Not Be Empty    ${value}
     END
+
+Verify Car Image On Car Details Page
+    [Documentation]    Verifies the primary car image is displayed and loaded correctly and src attribute of the image is not empty which indicates image is loaded successfully, if image src is empty or image is not loaded successfully then it will log an error message indicating car image is broken or not loaded
+    Wait Until Element Is Visible    ${CAR_IMAGE}    timeout=${MEDIUM_TIMEOUT}
+    Element Should Be Visible       ${CAR_IMAGE}
+    ${img_src}=    Get Element Attribute    ${CAR_IMAGE}    src
+    Log    Car image src: ${img_src}
+    Should Not Be Empty    ${img_src}    Car image src is empty, image may not have loaded
+    Should Start With      ${img_src}    http
+
+
 
