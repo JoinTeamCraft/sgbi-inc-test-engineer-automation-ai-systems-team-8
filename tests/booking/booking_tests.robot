@@ -6,6 +6,7 @@ Resource          ../../resources/pages/home_page.robot
 Resource          ../../resources/pages/search_result_page.robot
 Resource          ../../resources/pages/car_details_page.robot
 
+Test Setup    Car Detail Test Setup
 Test Teardown    Close All Browsers
 
 *** Keywords ***
