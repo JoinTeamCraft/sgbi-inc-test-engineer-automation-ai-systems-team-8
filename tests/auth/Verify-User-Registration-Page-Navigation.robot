@@ -120,15 +120,12 @@ Navigate To Registration Page
     [Documentation]    Navigate from Home to Registration page
     Wait Until Element Is Visible    ${SIGNIN_BUTTON}    ${MEDIUM_TIMEOUT}
     Click Element    ${SIGNIN_BUTTON}
-    Sleep    2s
     Wait Until Element Is Visible    ${SIGNUP_LINK}    ${MEDIUM_TIMEOUT}
     Click Element    ${SIGNUP_LINK}
-    Sleep    2s
     Log    ✓ Navigated to Registration page    console=yes
 
 Verify Registration Page Loaded
     [Documentation]    Verify Registration page loaded successfully
-    Sleep    3s
     ${page_loaded}=    Run Keyword And Return Status
     ...    Wait Until Page Contains    Sign up    ${LONG_TIMEOUT}
     
