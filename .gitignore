@@ -1,3 +1,6 @@
+# PR Documentation (exclude from commits)
+PR_DESCRIPTION.md
+
 # Python
 __pycache__/
 *.py[cod]
