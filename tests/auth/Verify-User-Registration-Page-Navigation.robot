@@ -140,16 +140,14 @@ Verify Registration Form Displayed
     Log    ✓ Registration form displayed    console=yes
 
 Verify Registration Form Fields
-    [Documentation]    Verify required form fields are present and visible on the registration page
-    ...                This test verifies all fields specified in the ticket requirements:
-    ...                - Email Address field (required - MUST be visible)
-    ...                - Password field (required - MUST be visible)
-    ...                - Confirm Password field (required - checked)
-    ...                - Full Name field (required - MUST be visible)
-    ...                - Last Name field (checked if separate from Full Name)
-    ...                - Register/Sign Up button (checked if visible)
-    ...
-    ...                Note: Multi-step forms may show some fields on subsequent steps
+    [Documentation]    Verify ALL required form fields are present and visible on the registration page
+    ...                Per ticket requirements, ALL fields must be verified with hard assertions:
+    ...                - Email Address field (MUST be visible)
+    ...                - Password field (MUST be visible)
+    ...                - Confirm Password field (MUST be visible)
+    ...                - Full Name field (MUST be visible)
+    ...                - Last Name field (MUST be visible if separate)
+    ...                - Register/Sign Up button (MUST be visible)
     
     Log    Verifying Email Address field...    console=yes
     Wait Until Element Is Visible    ${EMAIL_FIELD}    ${MEDIUM_TIMEOUT}
@@ -161,33 +159,24 @@ Verify Registration Form Fields
     Element Should Be Visible    ${PASSWORD_FIELD}
     Log    ✓ Password field present and visible    console=yes
     
-    Log    Checking for Confirm Password field...    console=yes
-    ${confirm_pwd_visible}=    Run Keyword And Return Status
-    ...    Wait Until Element Is Visible    ${CONFIRM_PASSWORD_FIELD}    ${SHORT_TIMEOUT}
-    Run Keyword If    ${confirm_pwd_visible}
-    ...    Log    ✓ Confirm Password field present and visible    console=yes
-    ...    ELSE
-    ...    Log    ℹ Confirm Password field may appear on next step (multi-step form)    console=yes
+    Log    Verifying Confirm Password field...    console=yes
+    Wait Until Element Is Visible    ${CONFIRM_PASSWORD_FIELD}    ${MEDIUM_TIMEOUT}
+    Element Should Be Visible    ${CONFIRM_PASSWORD_FIELD}
+    Log    ✓ Confirm Password field present and visible    console=yes
     
     Log    Verifying Full Name field...    console=yes
     Wait Until Element Is Visible    ${FIRSTNAME_FIELD}    ${MEDIUM_TIMEOUT}
     Element Should Be Visible    ${FIRSTNAME_FIELD}
     Log    ✓ Full Name field present and visible    console=yes
     
-    Log    Checking for Last Name field...    console=yes
-    ${lastname_visible}=    Run Keyword And Return Status
-    ...    Wait Until Element Is Visible    ${LASTNAME_FIELD}    ${SHORT_TIMEOUT}
-    Run Keyword If    ${lastname_visible}
-    ...    Log    ✓ Last Name field present and visible (separate field)    console=yes
-    ...    ELSE
-    ...    Log    ℹ Last Name may be combined with Full Name field    console=yes
+    Log    Verifying Last Name field...    console=yes
+    Wait Until Element Is Visible    ${LASTNAME_FIELD}    ${MEDIUM_TIMEOUT}
+    Element Should Be Visible    ${LASTNAME_FIELD}
+    Log    ✓ Last Name field present and visible    console=yes
     
-    Log    Checking for Register/Sign Up button...    console=yes
-    ${button_visible}=    Run Keyword And Return Status
-    ...    Wait Until Element Is Visible    ${REGISTER_BUTTON}    ${SHORT_TIMEOUT}
-    Run Keyword If    ${button_visible}
-    ...    Log    ✓ Register/Sign Up button present and visible    console=yes
-    ...    ELSE
-    ...    Log    ℹ Register/Sign Up button may require field input or appear after validation    console=yes
+    Log    Verifying Register/Sign Up button...    console=yes
+    Wait Until Element Is Visible    ${REGISTER_BUTTON}    ${MEDIUM_TIMEOUT}
+    Element Should Be Visible    ${REGISTER_BUTTON}
+    Log    ✓ Register/Sign Up button present and visible    console=yes
     
-    Log    ✓ All required registration form fields verified per ticket requirements    console=yes
+    Log    ✓ All required registration form fields verified successfully    console=yes
