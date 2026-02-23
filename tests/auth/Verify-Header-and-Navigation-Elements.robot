@@ -300,7 +300,8 @@ Test Navigation Item Clickability
     ...    Log    Testing ${item_name}...    console=yes
     ...    AND    Wait Until Element Is Enabled    ${locator}    timeout=${SHORT_TIMEOUT}
     ...    AND    Click Element    ${locator}
-    ...    AND    Sleep    2s
+    ...    AND    Wait Until Page Does Not Contain Element    xpath=//div[contains(@class, 'loading') or contains(text(), 'Loading')]    timeout=${MEDIUM_TIMEOUT}
+    ...    AND    Wait Until Element Is Visible    ${BODY_ELEMENT}    timeout=${SHORT_TIMEOUT}
     ...    AND    Log    ✓ ${item_name} is clickable and functional    console=yes
     ...    ELSE
     ...    Log    ⚠ ${item_name} not found on page    console=yes    level=WARN
