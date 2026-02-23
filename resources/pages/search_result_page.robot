@@ -14,7 +14,7 @@ ${SEARCH_RESULT_PAGE_CAR_NAMES}    xpath=//h3[contains(@class,'_product-card-hea
 *** Keywords ***
 Navigate To Search Results Page
     [Documentation]    Navigates to the search results page by performing a car search from the home page with valid search criteria and validates that the search results are displayed by checking the visibility of car name elements on the search results page
-    ${PICKUP_DATE}    ${RETURN_DATE} =    common_utility.Get Random Pickup And Return Dates
+    ${PICKUP_DATE}    ${RETURN_DATE} =    Get Random Pickup And Return Dates
     Perform Car Search home page    ${PICKUP_LOCATION}    ${DROPOFF_LOCATION}    ${PICKUP_DATE}    ${RETURN_DATE}
     Wait Until Element Is Visible    ${SEARCH_RESULT_PAGE_CAR_NAMES}    timeout=${MEDIUM_TIMEOUT}
 
