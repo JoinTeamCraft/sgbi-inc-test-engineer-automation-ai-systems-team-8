@@ -1,11 +1,15 @@
 *** Settings ***
 Documentation     User Registration (Sign Up) Page Navigation Tests
-...               
+...
 ...               Test ID: AT-03
 ...               Test Coverage: Verify User Registration (Sign Up) Page Navigation
-...               
+...
 ...               This test verifies that users can successfully navigate from the Home page
-...               to the Registration page and that all required form fields are present.
+...               to the Registration page and that the registration form is accessible.
+...
+...               Note: The application uses a multi-step registration form. This test verifies
+...               the initial step contains the required fields (Email, Password, Full Name).
+...               Additional fields (Confirm Password) may appear on subsequent steps.
 ...
 ...               Author: QA Automation Team
 ...               Application: MoRent Car Rental Platform
@@ -43,9 +47,10 @@ ${SIGNUP_LINK}             xpath=//a[contains(text(), 'Sign up')]
 # Registration Form Fields
 ${EMAIL_FIELD}             xpath=//input[@name='identifier' or @name='email' or @id='identifier-field']
 ${PASSWORD_FIELD}          xpath=//input[@name='password' or @id='password-field']
+${CONFIRM_PASSWORD_FIELD}  xpath=//input[@name='confirmPassword' or @name='password_confirmation' or contains(@placeholder, 'Confirm')]
 ${FIRSTNAME_FIELD}         xpath=//input[@name='firstName' or contains(@placeholder, 'First')]
 ${LASTNAME_FIELD}          xpath=//input[@name='lastName' or contains(@placeholder, 'Last')]
-${CONTINUE_BUTTON}         xpath=//button[contains(text(), 'Continue') or @type='submit']
+${REGISTER_BUTTON}         xpath=//button[contains(text(), 'Continue') or contains(text(), 'Register') or contains(text(), 'Sign up') or @type='submit']
 
 # Screenshot Settings
 ${SCREENSHOT_DIR}          ${OUTPUT_DIR}/screenshots
@@ -125,80 +130,46 @@ Navigate To Registration Page
     Log    ✓ Navigated to Registration page    console=yes
 
 Verify Registration Page Loaded
-    [Documentation]    Verify Registration page loaded successfully
-    ${page_loaded}=    Run Keyword And Return Status
-    ...    Wait Until Page Contains    Sign up    ${LONG_TIMEOUT}
-    
-    ${page_loaded2}=    Run Keyword And Return Status
-    ...    Wait Until Page Contains    sign up    ${SHORT_TIMEOUT}
-    ${page_loaded}=    Evaluate    ${page_loaded} or ${page_loaded2}
-    
-    ${page_loaded3}=    Run Keyword And Return Status
-    ...    Wait Until Page Contains    Create    ${SHORT_TIMEOUT}
-    ${page_loaded}=    Evaluate    ${page_loaded} or ${page_loaded3}
-    
-    Should Be True    ${page_loaded}    msg=Registration page did not load - no sign up indicators found
+    [Documentation]    Verify Registration page loaded by checking for email field presence
+    Wait Until Page Contains Element    ${EMAIL_FIELD}    ${LONG_TIMEOUT}
     Log    ✓ Registration page loaded    console=yes
 
 Verify Registration Form Displayed
-    [Documentation]    Verify Registration form is displayed
-    ${form_displayed}=    Run Keyword And Return Status
-    ...    Page Should Contain    Sign up
-    
-    ${form_displayed2}=    Run Keyword And Return Status
-    ...    Page Should Contain    sign up
-    ${form_displayed}=    Evaluate    ${form_displayed} or ${form_displayed2}
-    
-    ${form_displayed3}=    Run Keyword And Return Status
-    ...    Page Should Contain    Create
-    ${form_displayed}=    Evaluate    ${form_displayed} or ${form_displayed3}
-    
-    Should Be True    ${form_displayed}    msg=Registration form not displayed
+    [Documentation]    Verify Registration form is displayed by checking email field visibility
+    Wait Until Element Is Visible    ${EMAIL_FIELD}    ${MEDIUM_TIMEOUT}
     Log    ✓ Registration form displayed    console=yes
 
 Verify Registration Form Fields
-    [Documentation]    Verify all required form fields are present
+    [Documentation]    Verify required form fields are present and visible on the registration page
+    ...                This test verifies the core fields visible on the initial registration step:
+    ...                - Email Address field (required - MUST be visible)
+    ...                - Password field (required - MUST be visible)
+    ...                - Full Name field (required - MUST be visible)
+    ...                - Register/Sign Up button (checked if visible)
+    ...
+    ...                Note: Submit button may require field input before becoming visible/enabled
     
-    Log    Checking Email field...    console=yes
-    ${email_visible}=    Run Keyword And Return Status
-    ...    Wait Until Element Is Visible    ${EMAIL_FIELD}    ${MEDIUM_TIMEOUT}
+    Log    Verifying Email Address field...    console=yes
+    Wait Until Element Is Visible    ${EMAIL_FIELD}    ${MEDIUM_TIMEOUT}
+    Element Should Be Visible    ${EMAIL_FIELD}
+    Log    ✓ Email Address field present and visible    console=yes
     
-    Run Keyword If    ${email_visible}
-    ...    Log    ✓ Email field present    console=yes
+    Log    Verifying Password field...    console=yes
+    Wait Until Element Is Visible    ${PASSWORD_FIELD}    ${MEDIUM_TIMEOUT}
+    Element Should Be Visible    ${PASSWORD_FIELD}
+    Log    ✓ Password field present and visible    console=yes
+    
+    Log    Verifying Full Name field...    console=yes
+    Wait Until Element Is Visible    ${FIRSTNAME_FIELD}    ${MEDIUM_TIMEOUT}
+    Element Should Be Visible    ${FIRSTNAME_FIELD}
+    Log    ✓ Full Name field present and visible    console=yes
+    
+    Log    Checking for Register/Sign Up button...    console=yes
+    ${button_visible}=    Run Keyword And Return Status
+    ...    Wait Until Element Is Visible    ${REGISTER_BUTTON}    ${SHORT_TIMEOUT}
+    Run Keyword If    ${button_visible}
+    ...    Log    ✓ Register/Sign Up button present and visible    console=yes
     ...    ELSE
-    ...    Log    ℹ Email field may be on current or next step    console=yes
+    ...    Log    ℹ Register/Sign Up button may require field input or appear after validation    console=yes
     
-    Log    Checking Password field...    console=yes
-    ${password_visible}=    Run Keyword And Return Status
-    ...    Wait Until Element Is Visible    ${PASSWORD_FIELD}    ${SHORT_TIMEOUT}
-    Run Keyword If    ${password_visible}
-    ...    Log    ✓ Password field present    console=yes
-    ...    ELSE
-    ...    Log    ℹ Password field on next step    console=yes
-    
-    Log    Checking Name fields...    console=yes
-    ${firstname_visible}=    Run Keyword And Return Status
-    ...    Page Should Contain Element    ${FIRSTNAME_FIELD}
-    ${lastname_visible}=    Run Keyword And Return Status
-    ...    Page Should Contain Element    ${LASTNAME_FIELD}
-    
-    ${name_present}=    Evaluate    ${firstname_visible} or ${lastname_visible}
-    Run Keyword If    ${name_present}
-    ...    Log    ✓ Name fields present    console=yes
-    ...    ELSE
-    ...    Log    ℹ Name fields on next step    console=yes
-    
-    Log    Checking Submit button...    console=yes
-    ${submit_visible}=    Run Keyword And Return Status
-    ...    Wait Until Element Is Visible    ${CONTINUE_BUTTON}    ${MEDIUM_TIMEOUT}
-    
-    Run Keyword If    ${submit_visible}
-    ...    Log    ✓ Submit button present    console=yes
-    ...    ELSE
-    ...    Log    ⚠ Submit button not found    console=yes    level=WARN
-    
-    # At least one key field should be visible (email, password, name, or submit button)
-    ${form_valid}=    Evaluate    ${email_visible} or ${password_visible} or ${name_present} or ${submit_visible}
-    Should Be True    ${form_valid}    msg=No registration form fields found - form may not have loaded
-    
-    Log    ✓ Registration form fields verified    console=yes
+    Log    ✓ All required registration form input fields verified successfully    console=yes
