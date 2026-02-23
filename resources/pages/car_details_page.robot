@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     Template for reusable keywords
 Library           SeleniumLibrary
-Resource          ../../resources/base/common_utility.robot
+Resource          ../base/common_utility.robot
 
 *** Variables ***
 
