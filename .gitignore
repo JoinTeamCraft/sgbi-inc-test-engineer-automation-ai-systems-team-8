@@ -1,12 +1,12 @@
+# PR Documentation
+PR_DESCRIPTION.md
+
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-env/
-venv/
-ENV/
 build/
 develop-eggs/
 dist/
@@ -22,28 +22,17 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
 
-# Robot Framework
-results/
-log.html
-report.html
-output.xml
-selenium-screenshot-*.png
-*.png
-*.jpg
-*.jpeg
-*.gif
-
-# Browser binaries (Playwright/Selenium)
-.playwright/
-node_modules/
-playwright-report/
-test-results/
-browsers/
-chromedriver*
-geckodriver*
-msedgedriver*
-operadriver*
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
 
 # IDE
 .vscode/
@@ -53,17 +42,58 @@ operadriver*
 *~
 .DS_Store
 
-# Environment
+# Robot Framework
+results/
+output.xml
+log.html
+report.html
+selenium-screenshot-*.png
+*.png
+*.jpg
+*.jpeg
+*.gif
+!resources/Uploads/*.jpg
+!resources/Uploads/*.png
+
+# Browser binaries and drivers
+node_modules/
+.playwright/
+playwright-browsers/
+chromedriver
+geckodriver
+msedgedriver
+operadriver
+safaridriver
+*.exe
+
+# Selenium
+selenium-server-standalone-*.jar
+
+# Logs
+*.log
+logs/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Test outputs
+pabot_results/
+.pabotsuitenames
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Environment variables
 .env
 .env.local
-*.log
+.env.*.local
 
-# Large output folders
-screenshots/
-videos/
-traces/
-allure-results/
-allure-report/
-
-# PR Description (as per requirements)
-PR_DESCRIPTION.md
+# Temporary files
+*.tmp
+*.temp
+.cache/
