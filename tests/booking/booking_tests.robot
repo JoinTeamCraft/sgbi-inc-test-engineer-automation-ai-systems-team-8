@@ -15,6 +15,7 @@ Car Detail Test Setup
     Launch Application
     Navigate To Search Results Page
     ${Selected_car_name}=    Get Text    ${SEARCH_RESULT_PAGE_CAR_NAMES}
+    Set Suite Variable    ${SELECTED_CAR_NAME}    ${selected_car_name}
     Click Rent Now For First Car
     RETURN    ${Selected_car_name}
 
@@ -27,12 +28,10 @@ Booking Test Template
 TC_Navigation_To_Car_Details_Page_And_Validate_Car_Info
     [Documentation]    This test case validates that a user can navigate to the car details page from the search results and that the car information is displayed correctly
     [Tags]    booking
-    ${Selected_car_name} =    Car Detail Test Setup
     ${CAR_NAME}    ${CAR_PRICE}    Get Car Details Dynamically
-    Should Be Equal    ${CAR_NAME}    ${Selected_car_name}
+    Should Be Equal    ${CAR_NAME}    ${SELECTED_CAR_NAME}
 
 TC_Navigate_To_Car_Details_page_And_Verify_Car_Specifications
     [Documentation]    This test case validates that all the essential elements on the car specifications section of the car details page are displayed and contain valid information by iterating through the list of car info items and checking if the label and value for each item are present and not empty
     [Tags]    booking
-    Car Detail Test Setup
     Validate Car Specifications
