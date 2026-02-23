@@ -36,11 +36,6 @@ robot --outputdir results tests/profile/[TC_FileName].robot
    
 ### Resources (`resources/`)
 - **keywords.robot**: Contains all reusable keywords including:
-  - Launch Application
-  - Navigate To Profile Page
-  - Validate Update Profile
-  - Update Profile Names
-  - Verify Updated User Name
 
 - **locators.robot**: Contains all locators for the application elements.
 
@@ -60,6 +55,12 @@ After running tests, reports are generated in the `results/` directory:
 |---|---|---|---|
 | TC_001 | TC_Verify_User_Profile_Update_name | Verifies a logged-in user can update their First and Last name on the profile page. Validates no error messages appear and the updated name is reflected on the profile page and in the header dropdown. Also resets the name back to original values after verification. | `profile` |
 | TC_002 | TC_Verify_Update_Profile_Picture_Functionality | Verifies a logged-in user can upload a valid profile picture. Validates the updated picture is reflected on the profile page and in the header avatar both on the profile page and after navigating back to the home page. | `profile` |
+
+### Booking Tests (`tests/bookin/`)
+| Test Case ID | Test Case Name | Description | Tags |
+|--------------|---|---|---|
+| TC_001       | TC_Navigation_To_Car_Details_Page_And_Validate_Car_Info | Verifies that a user can navigate to the car details page from the home page and that the car information is displayed correctly. | `booking` |
+| TC_002       | TC_Navigate_To_Car_Details_page_And_Verify_Car_Specifications | Verifies that a user can navigate to the car details page from the home page and that the car specifications are displayed correctly. | `booking` |
 
 ---
 
